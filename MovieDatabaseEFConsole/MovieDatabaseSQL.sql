@@ -1,3 +1,11 @@
 CREATE DATABASE MovieDB;
 
-CREATE TABLE 
+CREATE TABLE Movies (
+	ID int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	Title varchar(50) NOT NULL,
+	Genre varchar(20) NOT NULL,
+);
+
+SELECT * FROM Movies;
+
+DROP TABLE Movies;
