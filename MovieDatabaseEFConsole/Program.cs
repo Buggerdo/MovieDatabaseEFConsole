@@ -7,28 +7,28 @@ namespace MovieDatabaseEFConsole
         static void Main()
         {
             CreateMovies();
-            //Movie.SearchByGenre();
-            Movie.SearchByTitle();
+            Movie.SearchByGenre();
+            //Movie.SearchByTitle();
 
-            static void CreateMovies()
+        }
+
+        public static void CreateMovies()
+        {
+            List<Movie> movieList = new();
+
+            using(var context = new MovieDBContext())
             {
-                List<Movie> movieList = new();
+                var countMoviesInDB = context.Movies.ToList();
 
-                using(var context = new MovieDBContext())
+                if(countMoviesInDB.Count == 0)
                 {
-                    var AllMovies = context.Movies.ToList();
+                    MakeMovieList(movieList);
 
-
-                    if(AllMovies.Count == 0)
+                    foreach(var movie in movieList)
                     {
-                        MakeMovieList(movieList);
-
-                        foreach(var movie in movieList)
-                        {
-                            context.Movies.Add(movie);
-                        }
-                        context.SaveChanges();
+                        context.Movies.Add(movie);
                     }
+                    context.SaveChanges();
                 }
             }
         }
