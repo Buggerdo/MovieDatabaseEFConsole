@@ -15,67 +15,27 @@
 
 
         //SearchByGenre: This method will return a list of Movie instances that match the genre.
-        public static void SearchByGenre()
+        public static List<Movie> SearchByGenre(string input)
         {
-
-            Console.Write("Please enter the genre you would like to see: ");
-
-            string userInput = Console.ReadLine();
             using(var context = new MovieDBContext())
             {
-                if(!string.IsNullOrWhiteSpace(userInput))
-                {
-                    Console.Clear();
-                    List<string> genres = context.Movies.Select(g => g.Genre).Distinct().ToList();
-
-                    foreach(var genre in genres)
-                    {
-                        if(genre.StartsWith(userInput, StringComparison.OrdinalIgnoreCase))
-                        {
-                            Console.WriteLine($"List of {genre} movies.");
-                            foreach(var m in context.Movies)
-                            {
-                                if(m.Genre == genre)
-                                {
-                                    Console.WriteLine($"{m.Title}");
-                                }
-                            }
-                            Console.WriteLine();
-                        }
-                    }
-                }
+                return context.Movies.Where(m => m.Genre == input).ToList();
             }
         }
 
 
         //SearchByTitle: This method will return a list of Movie instances that match the title.
-        public static void SearchByTitle()
+        public static List<Movie> SearchByTitle(string input)
         {
-            //Console.Write("Please enter the title you are looking for: ");
-            string userInput = Console.ReadLine();
-
             using(var context = new MovieDBContext())
             {
-                if(!string.IsNullOrWhiteSpace(userInput))
-                {
-                    try
-                    {
-                        Console.Clear();
-                        foreach(var m in context.Movies)
-                        {
-                            if(m.Title.StartsWith(userInput, StringComparison.OrdinalIgnoreCase))
-                            {
-                                Console.WriteLine($"{m.Title} {m.Genre}");
-                            }
-                        }
-                    }
-                    catch(Exception)
-                    {
-                        Console.WriteLine($"Sorry {userInput} is not a valid genre.");
-                    }
-                }
-                Console.WriteLine("Sorry that is not a valid entry.");
+                return context.Movies.Where(m => m.Title.StartsWith(input)).ToList();
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Title} {Genre}";
         }
     }
 }

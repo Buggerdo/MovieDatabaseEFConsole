@@ -7,9 +7,23 @@ namespace MovieDatabaseEFConsole
         static void Main()
         {
             CreateMovies();
-            Movie.SearchByGenre();
-            //Movie.SearchByTitle();
+            List<Movie> searchedByGenre = Movie.SearchByGenre("Action");
+            List<Movie> searchedByTitle = Movie.SearchByTitle("c");
+            if(searchedByGenre.Count > 0)
+            {
+                foreach(var movie in searchedByGenre)
+                {
+                    Console.WriteLine(movie);
+                }
+            }
 
+            if(searchedByTitle.Count > 0)
+            {
+                foreach(var movie in searchedByTitle)
+                {
+                    Console.WriteLine(movie);
+                }
+            }
         }
 
         public static void CreateMovies()
