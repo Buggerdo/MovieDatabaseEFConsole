@@ -8,4 +8,6 @@ CREATE TABLE Movies (
 
 SELECT * FROM Movies;
 
+DELETE FROM Movies;
+
 DROP TABLE Movies;

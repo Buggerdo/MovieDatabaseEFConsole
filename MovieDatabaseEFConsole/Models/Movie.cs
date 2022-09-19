@@ -35,7 +35,7 @@
 
         public override string ToString()
         {
-            return $"{Title} {Genre}";
+            return $"Title: {Title}\nGenre: {Genre}\n";
         }
     }
 }
