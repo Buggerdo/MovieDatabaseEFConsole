@@ -1,18 +1,26 @@
-﻿namespace MovieDatabaseEFConsole.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace MovieDatabaseEFConsole.Models
 {
     public partial class Movie
     {
         public int Id { get; set; }
         public string Title { get; set; } = null!;
         public string Genre { get; set; } = null!;
+        public double Runtime { get; set; }
 
-        public Movie(string title, string genre)
+        public Movie()
+        {
+            
+        }
+
+        public Movie(string title, string genre, float runTime)
         {
             Title = title;
             Genre = genre;
+            Runtime = runTime;
         }
-
-
 
         //SearchByGenre: This method will return a list of Movie instances that match the genre.
         public static List<Movie> SearchByGenre(string input)
@@ -35,7 +43,7 @@
 
         public override string ToString()
         {
-            return $"Title: {Title}\nGenre: {Genre}\n";
+            return $"\nTitle: {Title}\nGenre: {Genre}\nRun Time: {Runtime}";
         }
     }
 }

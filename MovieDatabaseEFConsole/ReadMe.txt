@@ -9,7 +9,6 @@ Use Database First and create a movie database. The database should contain a ta
 	nvarchar(20) Genre
 	float Runtime 
 
-	Scaffold-DbContext 'Data Source=TROYPC;Initial Catalog=MovieDB; Integrated Security=SSPI;' Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 
 Create a static function in your program class that populates your table with 10 to 15 movies. Call this function from your main; run it; then remove the call from your main so it doesn’t run again.
 Add two static methods to your Movie class:

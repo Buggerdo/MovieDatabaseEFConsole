@@ -31,15 +31,10 @@ namespace MovieDatabaseEFConsole.Models
         {
             modelBuilder.Entity<Movie>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property(e => e.Genre).HasMaxLength(20);
 
-                entity.Property(e => e.Genre)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+                entity.Property(e => e.Title).HasMaxLength(50);
 
-                entity.Property(e => e.Title)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

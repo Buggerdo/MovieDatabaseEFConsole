@@ -41,12 +41,12 @@ namespace MovieDatabaseEFConsole
         public static void MakeMovieList(List<Movie> movieList)
         {
             string[] lines = File.ReadAllLines(@".\MovieList.txt");
-
+            Random rand = new();
             foreach(string line in lines)
             {
                 string[] entries = line.Split(',');
-                Movie newMovie = new(entries[0], entries[1]);
-                movieList.Add(newMovie);
+
+                movieList.Add(new Movie(entries[0], entries[1], float.Parse(entries[2])));
             }
             movieList = movieList.OrderBy(x => x.Title).ThenBy(x => x.Genre).ToList();
         }
